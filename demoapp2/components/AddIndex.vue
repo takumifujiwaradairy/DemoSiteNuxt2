@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h1>kkkkkk</h1>
+    <ul>
+      <li v-for='article in articles' :key='article.id'>
+        {{ article.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data () {
     return {
     }
   },
-  methods: {
+  computed: {
+    ...mapState(['articles']),
+    }
   }
-}
+
 </script>
 
