@@ -8,6 +8,12 @@ const createStore = () => {
       ]
     }),
     mutations: {
+      insert: function(state, obj){
+        state.aricles.unshift({
+          title: obj.title,
+          content: obj.content
+        })
+      }
     }
   })
 }
