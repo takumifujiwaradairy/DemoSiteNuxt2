@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'demoapp2',
+    title: 'demoapp3',
     htmlAttrs: {
       lang: 'en'
     },
@@ -32,8 +32,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    'bootstrap-vue/nuxt',
+  modules: [   'bootstrap-vue/nuxt',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
