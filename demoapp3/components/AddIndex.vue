@@ -1,13 +1,13 @@
 <template>
   <div class = "container">
     <ul>
-      <li v-for = 'article in displayArticle' :key = 'article.id'>
+      <li v-for ='article in displayArticle' :key = 'article.id'>
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
       </li>
     </ul>
-    <input type="text" v-model="findTitle">
-    <button>検索</button>
+    <input type="text" v-model="findTitle" @focus="setFlg">
+    <button @click="find">検索</button>
   </div>
 </template>
 
@@ -18,31 +18,28 @@ export default {
   data: function() {
     return {
       findTitle: '',
+      findFlg: false,
     }
   },
   computed: {
     ...mapState(['articles']),
-    // displayArticle: function() {
-    //   // let arr = [];
-    //   // let data = this.aricles;
-    //   // // data.forEach(element => {
-    //   // //   if(element.title.toLowerCase() == this.title.toLowerCase()){
-    //   // //     arr.push(element);
-    //   // //   }
-    //   // });
-    //   return arr;
-    // }
     displayArticle: function() {
-      if(this.findTitle == 0){
-        return this.articles;
-      } else if(this.findTitle == articles.title){
-        return this.articles;
+      if(this.findFlg) {
       } else {
-        return this.findTitle;
+        return [];
       }
     }
   },
   methods: {
+    find: function() {
+      this.findFlg = true;
+    },
+    setFlg: function() {
+      if(this.findFlg) {
+        this.findFlg  = false;
+        this.findTitle = '';
+      }
+    },
   }
 }
 </script>
