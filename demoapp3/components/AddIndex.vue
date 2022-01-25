@@ -23,13 +23,20 @@ export default {
   },
   computed: {
     ...mapState(['articles']),
-    displayArticle: function() {
-      if(this.findFlg) {
-      } else {
-        return [];
+      displayArticle: function() {
+        if(this.findFlg){
+          var articles = [];
+          this.articles.forEach(article => {
+            if(article.title.toLowerCase() == this.findTitle.toLowerCase()){
+              arr.push(article);
+            }
+          });
+          return arr;
+        } else {
+          return this.articles;
+        }
       }
-    }
-  },
+    },
   methods: {
     find: function() {
       this.findFlg = true;
