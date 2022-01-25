@@ -12,7 +12,7 @@ class Api::V1::ArticlesController < ApplicationController
     end
   
     def create
-      article = Article.new(post_params)
+      article = Article.new(article_params)
         if article.save
           render json: { status: 'SUCCESS', data: article }
         else
@@ -39,7 +39,7 @@ class Api::V1::ArticlesController < ApplicationController
     end
 
   def article_params
-    params.require(:articl).permit(:title, :content)
+    params.require(:article).permit(:title, :content)
   end
   end
 end
