@@ -1,7 +1,7 @@
 <template>
   <div class = "container">
     <ul>
-      <li v-for ='article in displayArticle' :key = 'article.id'>
+      <li v-for='article in displayArticle' :key='article.id'>
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
       </li>
