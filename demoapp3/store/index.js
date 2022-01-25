@@ -12,13 +12,14 @@ const createStore = () => {
 
     },
     actions: {
-      async post({commit}, aricle) {
-        const response = await axios.post('/api/posts', { aricle })
-        commit('newAticle', response.data ,{ root: true })
-      },
+      async postArticle({commit}, aricle) {
+          const url = 'http://localhost:3000/api/v1/posts'
+          const response = await axios.post(url, {aricle})
+          commit(response.data)
+      }
     },
     mutations: {
-      newAticle: (state, aricle) => state.articles.push(aricle)
+      
     }
   })
 }
