@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     post: function() {
-      this.$store.dispatch('postArticle', {title: this.title, content: this.content });
+      this.$store.dispatch('postArticle', { title: this.title, content: this.content });
       this.title = '',
       this.content = ''
     }

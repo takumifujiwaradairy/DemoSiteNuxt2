@@ -6,7 +6,7 @@ const url = '/api/posts';
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
-      aricle: [
+      articles: [
         {title: 'test', content: 'hogehogehoge'}
       ]
     }),
