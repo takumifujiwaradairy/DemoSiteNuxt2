@@ -25,10 +25,10 @@ export default {
     ...mapState(['articles']),
       displayArticle: function() {
         if(this.findFlg){
-          var arr = [];
-          this.articles.forEach(element => {
-            if(element.title.toLowerCase() == this.findTitle.toLowerCase()){
-              arr.push(element);
+          var articles = [];
+          this.articles.forEach(article => {
+            if(article.title.toLowerCase() == this.findTitle.toLowerCase()){
+              arr.push(article);
             }
           });
           return arr;
@@ -45,9 +45,6 @@ export default {
       if(this.findFlg) {
         this.findFlg  = false;
         this.findTitle = '';
-        this.articles.forEach (function(element){
-          console.log(element);
-        });
       }
     },
   }
