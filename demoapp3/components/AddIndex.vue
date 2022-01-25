@@ -23,13 +23,20 @@ export default {
   },
   computed: {
     ...mapState(['articles']),
-    displayArticle: function() {
-      if(this.findFlg) {
-      } else {
-        return [];
+      displayArticle: function() {
+        if(this.findFlg){
+          var arr = [];
+          this.articles.forEach(element => {
+            if(element.title.toLowerCase() == this.findTitle.toLowerCase()){
+              arr.push(element);
+            }
+          });
+          return arr;
+        } else {
+          return this.articles;
+        }
       }
-    }
-  },
+    },
   methods: {
     find: function() {
       this.findFlg = true;
@@ -38,6 +45,9 @@ export default {
       if(this.findFlg) {
         this.findFlg  = false;
         this.findTitle = '';
+        this.articles.forEach (function(element){
+          console.log(element);
+        });
       }
     },
   }
