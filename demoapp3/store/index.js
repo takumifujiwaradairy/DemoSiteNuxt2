@@ -14,13 +14,17 @@ const createStore = () => {
 
     },
     actions: {
+      async fetchArticles({commit}) {
+        const responce = await axios.get(url)
+        commit('setArticles', responce.data)
+      },
       async postArticle({commit}, article) {
-          const response = await axios.post(url, { article })
-          commit(response.data)
+          const responce = await axios.post(url, article)
+          commit(responce.data)
       }
     },
     mutations: {
-      
+      setArticles: (state, articles) => (state.articles = articles)
     }
   })
 }
