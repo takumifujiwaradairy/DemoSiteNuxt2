@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
+import {mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   data: function() {
@@ -22,6 +22,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getArticles']),
     ...mapState(['articles']),
       displayArticle: function() {
         if(this.findFlg){
@@ -33,7 +34,7 @@ export default {
           });
           return arr;
         } else {
-          return this.articles;
+          return this.getArticles;
         }
       }
     },

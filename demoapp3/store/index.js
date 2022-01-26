@@ -11,7 +11,9 @@ const createStore = () => {
       ]
     }),
     getters: {
-
+      getArticles: (state) => {
+        return  state.articles.data
+      } 
     },
     actions: {
       async fetchArticles({commit}) {
@@ -19,8 +21,8 @@ const createStore = () => {
         commit('setArticles', responce.data)
       },
       async postArticle({commit}, article) {
-          const responce = await axios.post(url, article)
-          commit(responce.data)
+        const responce = await axios.post(url, article)
+        commit(responce.data)
       }
     },
     mutations: {
