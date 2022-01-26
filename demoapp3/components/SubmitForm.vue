@@ -3,7 +3,7 @@
     <input type="text" v-model="title">
     <textarea v-model="content">
     </textarea> 
-    <button @click="insert">保存</button>
+    <button @click="post">保存</button>
   </div> 
 </template>
 
@@ -16,8 +16,8 @@ export default {
     }
   },
   methods: {
-    insert: function() {
-      this.$store.commit('insert', {title: this.title, content: this.content });
+    post: function() {
+      this.$store.dispatch('postArticle', { title: this.title, content: this.content });
       this.title = '',
       this.content = ''
     }
