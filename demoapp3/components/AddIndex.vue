@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 
 export default {
   data: function() {
@@ -38,6 +38,7 @@ export default {
       }
     },
   methods: {
+    ...mapActions(['fetchArticles']),
     find: function() {
       this.findFlg = true;
     },
@@ -46,7 +47,10 @@ export default {
         this.findFlg  = false;
         this.findTitle = '';
       }
-    },
+    }
+  },
+  created () {
+    this.fetchArticles()
   }
 }
 </script>

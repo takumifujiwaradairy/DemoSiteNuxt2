@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import axios from 'axios';
 
-const url = '/api/posts';
+const url = '/api/articles';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -14,13 +14,17 @@ const createStore = () => {
 
     },
     actions: {
-      async postArticle({commit}, post) {
-          const response = await axios.post(url, { post })
-          commit(response.data)
+      async fetchArticles({commit}) {
+        const responce = await axios.get(url)
+        commit('setArticles', responce.data)
+      },
+      async postArticle({commit}, article) {
+          const responce = await axios.post(url, article)
+          commit(responce.data)
       }
     },
     mutations: {
-      
+      setArticles: (state, articles) => (state.articles = articles)
     }
   })
 }
