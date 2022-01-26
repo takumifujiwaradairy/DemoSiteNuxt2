@@ -4,6 +4,7 @@
       <li v-for ='article in displayArticle' :key = 'article.id'>
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
+        <p> {{ article.id }} </p>
         <DeleteArticle/>
       </li>
     </ul>
@@ -32,12 +33,12 @@ export default {
       displayArticle: function() {
         if(this.findFlg){
           var articles = [];
-          this.articles.forEach(article => {
+          this.getArticles.forEach(article => {
             if(article.title.toLowerCase() == this.findTitle.toLowerCase()){
-              arr.push(article);
+              articles.push(article);
             }
           });
-          return arr;
+          return articles;
         } else {
           return this.getArticles;
         }
