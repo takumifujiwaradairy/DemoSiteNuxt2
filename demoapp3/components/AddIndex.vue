@@ -4,6 +4,7 @@
       <li v-for ='article in displayArticle' :key = 'article.id'>
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
+        <DeleteArticle/>
       </li>
     </ul>
     <input type="text" v-model="findTitle" @focus="setFlg">
@@ -12,9 +13,13 @@
 </template>
 
 <script>
+import DeleteArticle from './DeleteArticle.vue'
 import {mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
+  components: {
+    DeleteArticle
+  },
   data: function() {
     return {
       findTitle: '',
