@@ -17,16 +17,19 @@ const createStore = () => {
     },
     actions: {
       async fetchArticles({commit}) {
-        const responce = await axios.get(url)
+        await axios.get(url).then((responce => {
         commit('setArticles', responce.data)
+        }))
       },
       async postArticle({commit}, article) {
-        const responce = await axios.post(url, article)
+        await axios.post(url, article).then(responce => {
         commit(responce.data)
+        })
       },
-      async deleteArticle({commit}, id){
-        await axios.delete(url.concat('/${id}'));
-        commit('removeArticle',id)
+      async deleteArticle({commit}){
+        await axios.delete(url.concat('/${id}')).then(responce => {
+        commit('removeArticle',response.id)
+        })
       }
     },
     mutations: {

@@ -15,7 +15,7 @@
 
 <script>
 import DeleteArticle from './DeleteArticle.vue'
-import {mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   components: {
