@@ -34,7 +34,7 @@ export default {
         if(this.findFlg){
           var articles = [];
           this.getArticles.forEach(article => {
-            if(article.title.toLowerCase() == this.findTitle.toLowerCase()){
+            if(article.title.toLowerCase().indexOf(this.findTitle.toLowerCase())> -1){
               articles.push(article);
             }
           });

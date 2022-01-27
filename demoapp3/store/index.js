@@ -28,12 +28,11 @@ const createStore = () => {
       },
       async deleteArticle({commit}, id){
         await axios.delete(url.concat(`/${id}`))
-        commit('removeArticle', 'id')
+        commit('id')
       }
     },
     mutations: {
       setArticles: (state, articles) => (state.articles = articles),
-      removeArticle: (state, id) => state.articles.filter(articles.id !== id)
     }
   })
 }
