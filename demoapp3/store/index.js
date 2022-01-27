@@ -11,20 +11,26 @@ const createStore = () => {
       ]
     }),
     getters: {
-
+      getArticles: (state) => {
+        return  state.articles
+      } 
     },
     actions: {
       async fetchArticles({commit}) {
-        const responce = await axios.get(url)
-        commit('setArticles', responce.data)
+        await axios.get(url).then((responce => {commit('setArticles', responce.data)}))
       },
       async postArticle({commit}, article) {
-          const responce = await axios.post(url, article)
-          commit(responce.data)
+        await axios.post(url, article).then(responce => {
+        commit(responce.data)
+        })
+      },
+      async deleteArticle({commit}){
+        await axios.delete(url.concat('/${id}')).then(responce => {commit('removeArticle',responce.id)})
       }
     },
     mutations: {
-      setArticles: (state, articles) => (state.articles = articles)
+      setArticles: (state, articles) => (state.articles = articles),
+      removeArticle: (state, id) => state.articles = state.articles.filter(article => article.id !== id)
     }
   })
 }
