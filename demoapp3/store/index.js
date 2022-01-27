@@ -12,7 +12,7 @@ const createStore = () => {
     }),
     getters: {
       getArticles: (state) => {
-        return  state.articles.data
+        return  state.articles
       } 
     },
     actions: {
