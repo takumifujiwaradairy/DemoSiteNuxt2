@@ -5,7 +5,7 @@
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
         <p> {{ article.id }} </p>
-        <DeleteArticle/>
+        <DeleteArticle :id="article.id"/>
       </li>
     </ul>
     <input type="text" v-model="findTitle" @focus="setFlg">
