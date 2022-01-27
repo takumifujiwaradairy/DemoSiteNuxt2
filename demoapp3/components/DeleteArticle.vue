@@ -17,7 +17,6 @@ export default {
   props: ["id"],
   methods: {
     ...mapActions(['deleteArticle'])
-  },
-  methods
+  }
 }
 </script>

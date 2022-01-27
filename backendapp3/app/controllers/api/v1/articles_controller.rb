@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
   class Api::V1::ArticlesController < ApplicationController
-    before_action :set_post, only: [:show, :update, :destroy]
+    before_action :set_article, only: [:show, :update, :destroy]
   
     def index
       articles = Article.order(created_at: :desc)
