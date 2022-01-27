@@ -22,20 +22,15 @@ const createStore = () => {
         })
       },
       async postArticle({commit}, article) {
-      await axios.post(url, article).then(responce => {commit(responce.data)})
-      // async postArticle({commit}, article) {
-      //   const response = await axios.post(url, { article })
-      //   commit(response.data)
+        const responce = await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
       },  
       async deleteArticle({commit}, id){
         await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
       }
     },
     mutations: {
-      setArticles: (state, articles) =>{
-        console.log(articles);
-        state.articles = articles
-      },
+      setArticles: (state, articles) => { state.articles = articles },
+      newArticle: (state, article) => state.articles.unshift(article),
       deleteArticle: (state, id) => {
         state.articles.forEach((article) =>console.log(article.id))
         state.articles.forEach((article) => {
