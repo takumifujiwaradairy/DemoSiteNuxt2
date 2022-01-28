@@ -16,7 +16,7 @@
 
 <script>
 import DeleteArticle from './DeleteArticle.vue'
-import AddLike from './AddLike/index.vue'
+import AddLike from './AddLike.vue'
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
