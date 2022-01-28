@@ -7,7 +7,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: () => ({
       articles: [
-        {title: 'test', content: 'hogehogehoge'}
+        {title: 'test', content: 'hogehogehoge', like: '0'}
       ]
     }),
     getters: {

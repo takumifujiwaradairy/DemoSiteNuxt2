@@ -5,6 +5,7 @@
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
         <p> {{ article.id }} </p>
+        <p> {{ article.like }} </p>
         <DeleteArticle :id="article.id"/>
       </li>
     </ul>
