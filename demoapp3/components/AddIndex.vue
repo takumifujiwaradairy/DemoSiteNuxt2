@@ -5,9 +5,8 @@
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
         <p> {{ article.id }} </p>
-        <p> {{ article.like }} </p>
         <DeleteArticle :id="article.id"/>
-        <AddLike :like="article.like"/>
+        <AddLike :article="article"/>
       </li>
     </ul>
     <input type="text" v-model="findTitle" @focus="setFlg">
