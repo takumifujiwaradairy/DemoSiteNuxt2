@@ -33,8 +33,8 @@ const createStore = () => {
       newArticle: (state, article) => state.articles.unshift(article),
       deleteArticle: (state, id) => {
         state.articles.forEach(() => {
-        const index = state.articles.findIndex((v) => v.id === id);
-        state.articles.splice(index,1);
+          const index = state.articles.findIndex((v) => v.id === id);
+          state.articles.splice(index,1);
         });
       }
     }
