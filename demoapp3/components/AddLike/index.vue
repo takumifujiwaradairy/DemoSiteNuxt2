@@ -2,7 +2,7 @@
   <div>
     <p>Likesの合計</p>
     {{ article.like }}
-    <button @click="AddLike">LIKE</button>
+    <button @click="addLike">LIKE</button>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
   props: ["article"],
   methods: {
-    AddLike: function (){
+    addLike: function (){
       this.article.like += 1; 
     }
   }
