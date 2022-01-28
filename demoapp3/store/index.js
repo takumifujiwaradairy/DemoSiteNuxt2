@@ -20,9 +20,7 @@ const createStore = () => {
         await axios.get(url).then((responce => {commit('setArticles', responce.data)}))
       },
       async postArticle({commit}, article) {
-        await axios.post(url, article).then(responce => {
-        commit(responce.data)
-        })
+        await axios.post(url, article).then(responce => {commit(responce.data)})
       },
       async deleteArticle({commit}){
         await axios.delete(url.concat('/${id}')).then(responce => {commit('removeArticle',responce.id)})
@@ -30,7 +28,6 @@ const createStore = () => {
     },
     mutations: {
       setArticles: (state, articles) => (state.articles = articles),
-      removeArticle: (state, id) => state.articles = state.articles.filter(article => article.id !== id)
     }
   })
 }

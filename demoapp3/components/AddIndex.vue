@@ -5,7 +5,7 @@
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
         <p> {{ article.id }} </p>
-        <DeleteArticle/>
+        <DeleteArticle :id="article.id"/>
       </li>
     </ul>
     <input type="text" v-model="findTitle" @focus="setFlg">
@@ -34,7 +34,7 @@ export default {
         if(this.findFlg){
           var articles = [];
           this.getArticles.forEach(article => {
-            if(article.title.toLowerCase() == this.findTitle.toLowerCase()){
+            if(article.title.toLowerCase().indexOf(this.findTitle.toLowerCase())> -1){
               articles.push(article);
             }
           });
