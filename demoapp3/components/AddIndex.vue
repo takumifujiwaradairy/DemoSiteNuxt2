@@ -44,6 +44,11 @@ export default {
         }
       }
     },
+  watch: {
+    getArticles (state) {
+      console.log(state);
+    }
+  },
   methods: {
     ...mapActions(['fetchArticles']),
     find: function() {

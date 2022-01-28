@@ -31,7 +31,7 @@ const createStore = () => {
     mutations: {
       setArticles: (state, articles) => { state.articles = articles },
       newArticle: (state, article) => state.articles.unshift(article),
-      deleteArticle: (state, id) => state.articles.splice(id,1)
+      deleteArticle: (state, id) => {state.articles.splice(id,1)}
     }
   })
 }
