@@ -12,7 +12,7 @@ const createStore = () => {
     }),
     getters: {
       getArticles: (state) => {
-        return  state.articles.data
+        return  state.articles
       } 
     },
     actions: {
@@ -22,8 +22,8 @@ const createStore = () => {
       async postArticle({commit}, article) {
         await axios.post(url, article).then(responce => {commit(responce.data)})
       },
-      async deleteArticle({commit}, id){
-        await axios.delete(url.concat(`/${id}`)).then(() => {commit('id')})
+      async deleteArticle({commit}){
+        await axios.delete(url.concat('/${id}')).then(responce => {commit('removeArticle',responce.id)})
       }
     },
     mutations: {
