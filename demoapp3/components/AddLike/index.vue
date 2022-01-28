@@ -12,6 +12,8 @@ export default {
   methods: {
     AddLike: function (){
       this.article.like += 1; 
+      console.log(this.article.like);
+      this.$store
     }
   }
 }
