@@ -27,8 +27,10 @@ const createStore = () => {
       async deleteArticle({commit}, id){
         await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
       },
-      async updateLikes(){
-
+      async updateLikes({commit}, updLike){
+        console.log("BBB");
+        await axios.put(url.concat(`/${id}`),updLike); 
+        commit('updateLike', responce)
       }
     },
     mutations: {
@@ -41,6 +43,12 @@ const createStore = () => {
         // 非リアクティブ
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
+      },
+      addLike: (state, updLike) => {
+        const index = state.articles.findIndex((article) => article.id === updLike.id)
+        if(index !== -1){
+          state.articles.splice(index, 1,updLike)
+        }
       }
     }
   })

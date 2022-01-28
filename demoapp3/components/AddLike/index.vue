@@ -7,13 +7,19 @@
 </template>
 
 <script>
+import {  mapActions } from 'vuex';
 export default {
   props: ["article"],
   methods: {
+    ...mapActions(['updateLikes']),
     AddLike: function (){
-      this.article.like += 1; 
-      console.log(this.article.like);
-      this.$store
+      const pulslike = {
+        like: this.article.like+1,  
+        id: this.article.id
+      }
+      console.log("AAA");
+      console.log(plus);
+      this.updateLikes(plus);
     }
   }
 }
