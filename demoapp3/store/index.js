@@ -28,8 +28,7 @@ const createStore = () => {
         await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
       },
       async updateLikes({commit}, updLike){
-        console.log("BBB");
-        await axios.put(url.concat(`/${id}`),updLike); 
+        await axios.put(url.concat(`/${updLike.id}`),updLike); 
         commit('updateLike', responce)
       }
     },

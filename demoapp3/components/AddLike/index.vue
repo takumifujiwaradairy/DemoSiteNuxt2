@@ -14,12 +14,10 @@ export default {
     ...mapActions(['updateLikes']),
     AddLike: function (){
       const pulslike = {
-        like: this.article.like+1,  
+        like: this.article.like+=1, 
         id: this.article.id
       }
-      console.log("AAA");
-      console.log(plus);
-      this.updateLikes(plus);
+      this.updateLikes(pulslike);
     }
   }
 }
