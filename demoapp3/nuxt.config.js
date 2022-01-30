@@ -36,6 +36,9 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
   modules: [   
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
