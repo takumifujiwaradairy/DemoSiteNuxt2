@@ -12,12 +12,13 @@ export default {
   data: function() {
     return {
       title: '',
-      content: ''
+      content: '',
+      like: '',
     }
   },
   methods: {
     post: function() {
-      this.$store.dispatch('postArticle', { title: this.title, content: this.content });
+      this.$store.dispatch('postArticle', { title: this.title, content: this.content, like: '0'});
       this.title = '',
       this.content = ''
     }

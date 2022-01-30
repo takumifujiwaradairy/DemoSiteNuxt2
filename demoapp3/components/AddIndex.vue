@@ -6,6 +6,7 @@
         <p> {{ article.content }} </p>
         <p> {{ article.id }} </p>
         <DeleteArticle :id="article.id"/>
+        <AddLike :article="article"/>
       </li>
     </ul>
     <input type="text" v-model="findTitle" @focus="setFlg">
@@ -15,11 +16,13 @@
 
 <script>
 import DeleteArticle from './DeleteArticle.vue'
+import AddLike from './AddLike/index.vue'
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   components: {
-    DeleteArticle
+    DeleteArticle,
+    AddLike
   },
   data: function() {
     return {

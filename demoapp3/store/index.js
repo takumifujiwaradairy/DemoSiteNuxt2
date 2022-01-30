@@ -6,9 +6,7 @@ const url = '/api/articles';
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
-      articles: [
-        {title: 'test', content: 'hogehogehoge'}
-      ]
+      articles: []
     }),
     getters: {
       getArticles: (state) => {
@@ -17,17 +15,26 @@ const createStore = () => {
     },
     actions: {
       async fetchArticles({commit}) {
-        await axios.get(url).then((responce => {commit('setArticles', responce.data)}))
+        await axios.get(url).then(responce => {
+          commit('setArticles', responce.data.data)
+        })
       },
       async postArticle({commit}, article) {
-        await axios.post(url, article).then(responce => {commit(responce.data)})
-      },
-      async deleteArticle({commit}){
-        await axios.delete(url.concat('/${id}')).then(responce => {commit('removeArticle',responce.id)})
+        await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
+      },  
+      async deleteArticle({commit}, id){
+        await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
       }
     },
     mutations: {
-      setArticles: (state, articles) => (state.articles = articles),
+      setArticles: (state, articles) => { state.articles = articles },
+      newArticle: (state, article) => state.articles.unshift(article),
+      deleteArticle: (state, id) => {
+        state.articles.forEach(() => {
+          const index = state.articles.findIndex((v) => v.id === id);
+          state.articles.splice(index,1);
+        });
+      }
     }
   })
 }
