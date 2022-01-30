@@ -13,11 +13,11 @@ class Api::V1::ArticlesController < ApplicationController
   
     def create
       article = Article.new(article_params)
-        if article.save
-          render json: { status: 'SUCCESS', data: article }
-        else
-          render json: { status: 'ERROR', data: article.errors }
-        end
+      if article.save
+        render json: { status: 'SUCCESS', data: article }
+      else
+        render json: { status: 'ERROR', data: article.errors }
+      end
     end
   
     def destroy
@@ -38,8 +38,10 @@ class Api::V1::ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-  def article_params
-    params.require(:article).permit(:title, :content, :like)
-  end
+
+    def article_params
+      params.require(:article).permit(:title, :content, :like)
+    end
+
   end
 end
