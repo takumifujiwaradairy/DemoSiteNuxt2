@@ -38,15 +38,16 @@ const createStore = () => {
       deleteArticle: (state, id) => {
         // リアクティブ
 				const index = state.articles.findIndex((article) => article.id === id);
-        state.articles.splice(index,1);
+        state.articles.splice(index, 1);
         // 非リアクティブ
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
       addLike: (state, uplike) => {
-        const index = state.articles.findindex((article) => article.id === uplike.id)
+        const index = state.articles.findIndex((article) => article.id === uplike.id)
         if(index !== -1){
-          state.articles.splice(index, 1,upLike)
+          uplike.like +=1
+          state.articles.splice(index, 1, uplike)
         }
       }
     }
