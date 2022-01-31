@@ -1,14 +1,10 @@
 class Api::V1::LikesController < ApplicationController
-
   def update
-  end
-
-  private
-  def set_article
     @article = Article.find(params[:id])
-  end
-
-  def article_params
-    params.require(:article).permit(:like)
+    if @article.update(like: params[:like]+=1)
+      render json: { status: 'success', message: 'updated the article', data: @article }
+    else    
+        render json: { status: 'success', message: 'not updated', data: @article.errors }
+    end
   end
 end
