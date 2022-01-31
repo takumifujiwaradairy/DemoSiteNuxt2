@@ -28,7 +28,7 @@ const createStore = () => {
         await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
       },
       async updateLikes({commit}, upLike){
-        await axios.put(url.concat(`/${upLike.id}`), upLike).then(()=> {commit('updateLikes')}) 
+        await axios.put(url.concat(`/${upLike.id}`), upLike).then(()=> {commit('addLike', upLike)}) 
       }
     },
     mutations: {
