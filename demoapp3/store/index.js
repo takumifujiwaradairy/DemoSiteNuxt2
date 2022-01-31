@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 
 const url = '/api/articles';
+const likesUrl = '/api/likes';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -25,10 +26,10 @@ const createStore = () => {
         await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
       },  
       async deleteArticle({commit}, id){
-        await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
+        await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
       async updateLikes({commit}, upLike){
-        await axios.put(url.concat(`/${upLike.id}`), upLike).then(()=> {commit('addLike', upLike)}) 
+        await axios.put(`${likesUrl}/${upLike.id}`, upLike).then(()=> {commit('addLike', upLike)}) 
       }
     },
     mutations: {
