@@ -14,7 +14,6 @@ export default {
     ...mapActions(['updateLikes']),
     AddLike: function (){
       const pulslike = {
-        like: this.article.like, 
         id: this.article.id
       }
       this.updateLikes(pulslike);

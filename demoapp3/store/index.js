@@ -43,7 +43,7 @@ const createStore = () => {
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
-      addlike: (state, uplike) => {
+      addLike: (state, uplike) => {
         const index = state.articles.findindex((article) => article.id === uplike.id)
         if(index !== -1){
           state.articles.splice(index, 1,upLike)
