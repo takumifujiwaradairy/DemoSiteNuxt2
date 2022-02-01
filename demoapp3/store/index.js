@@ -47,10 +47,9 @@ const createStore = () => {
         console.log(id)
         const index = state.articles.findIndex((article) => article.id === id)
         if(index !== -1){
-          let aaa = state.articles[index]
-          aaa.like += 1
-          
-          state.articles.splice(index, 1, aaa)
+          let likeCount = state.articles[index]
+          likeCount.like += 1
+          state.articles.splice(index, 1, likeCount);
         }
       }
     }
