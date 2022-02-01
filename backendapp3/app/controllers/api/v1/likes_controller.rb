@@ -1,7 +1,6 @@
 class Api::V1::LikesController < ApplicationController
   def update
     article = Article.find(params[:id])
-    pust 
     article.like += 1
     if article.save
       render json: { status: 'success', message: 'updated Sumlikes', data: article }
