@@ -39,7 +39,8 @@ export default {
   modules: [   
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/auth'
   ],proxy: {
     '/api': {
       target: 'http://localhost:3000',
@@ -48,7 +49,23 @@ export default {
       }
     }
   },
-
+  auth: {
+    redirect: {
+        login: '/users/login',
+        logout: '/',
+        callback: false,
+        home: '/users/profile',
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/v1/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/api/v1/auth/logout', method: 'post' },
+          user: false,
+        },
+      }
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

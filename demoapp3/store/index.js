@@ -44,7 +44,6 @@ const createStore = () => {
         // delete state.articles[index];
       },
       addLike: (state, id) => {
-        console.log(id)
         const index = state.articles.findIndex((article) => article.id === id)
         if(index !== -1){
           let likeCount = state.articles[index]
