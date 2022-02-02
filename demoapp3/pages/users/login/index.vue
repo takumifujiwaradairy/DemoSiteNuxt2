@@ -7,6 +7,7 @@
         <input type="email" v-model="email">
         <label>パスワード</label>
         <input type="passwprd" v-model="password">
+        <button @click="loginWithAuthModule">ログイン</button>
       </form>
     </div>
   </div>
@@ -14,12 +15,27 @@
 
 <script>
 export default {
-  auth: false,
-  data: {
-    email: '',
-    passwprd: ''
+  data () {
+    return {
+      password: '',
+      email: ''
+    }
   },
   methods: {
+    async loginWithAuthModule () {
+      await this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      })
+        .then((response) => {
+          return response
+        },
+        (error) => {
+          return error
+        })
+    }
   }
 }
 </script>
