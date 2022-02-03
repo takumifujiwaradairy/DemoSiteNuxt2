@@ -9,7 +9,7 @@
         <input type="password" v-model="user.password">
         <label>パスワード確認</label>
         <input type="password" v-model="user.passwordConfirmation">
-        <button @click="register">ログイン</button>
+        <button @click.prevent="register">ログイン</button>
       </form>
     </div>
   </div>

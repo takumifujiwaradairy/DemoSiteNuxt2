@@ -7,7 +7,7 @@
         <input type="email" v-model="email">
         <label>パスワード</label>
         <input type="passwprd" v-model="password">
-        <button @click="loginWithAuthModule">ログイン</button>
+        <button @click.prevent="loginWithAuthModule">ログイン</button>
       </form>
     </div>
   </div>
@@ -30,11 +30,12 @@ export default {
         }
       })
         .then((response) => {
-          return response
-        },
-        (error) => {
-          return error
-        })
+            localStorage.setItem('access-token', response.headers['access-token'])
+            localStorage.setItem('client', response.headers.client)
+            localStorage.setItem('uid', response.headers.uid)
+            localStorage.setItem('token-type', response.headers['token-type'])
+            return response
+          })
     }
   }
 }
