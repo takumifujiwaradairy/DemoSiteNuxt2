@@ -4,11 +4,11 @@
     <div>
       <form action="">
         <label>メールアドレス</label>
-        <input type="email" v-model="email">
+        <input type="email" v-model="user.email">
         <label>パスワード</label>
-        <input type="password" v-model="password">
+        <input type="password" v-model="user.password">
         <label>パスワード確認</label>
-        <input type="password" v-model="passwordConfirmation">
+        <input type="password" v-model="user.passwordConfirmation">
         <button @click="register">ログイン</button>
       </form>
     </div>
