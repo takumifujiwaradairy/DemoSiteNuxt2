@@ -57,6 +57,10 @@ export default {
         this.findFlg  = false;
         this.findTitle = '';
       }
+    },
+    rennsyuu: function() {
+    let n1 = ['yusuke','kazuya','risa','shiori']
+    consoel.log(n1[0])
     }
   },
   created () {
