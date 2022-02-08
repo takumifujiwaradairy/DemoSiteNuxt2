@@ -4,7 +4,10 @@
       <li v-for ='article in displayArticle' :key = 'article.id'>
         <p> {{ article.title }} </p>
         <p> {{ article.content }} </p>
+        <p>記事のID番号</p>
         <p> {{ article.id }} </p>
+        <p>ユーザーのId番号</p>
+        <p> {{ article.user_id }} </p>
         <DeleteArticle :id="article.id"/>
         <AddLike :article="article"/>
       </li>
