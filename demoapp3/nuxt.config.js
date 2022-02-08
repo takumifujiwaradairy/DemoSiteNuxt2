@@ -60,7 +60,7 @@ export default {
       local: {
         endpoints: {
           login: { url: '/api/auth/sign_in', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/v1/auth/logout', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
           user: false,
         },
       }
