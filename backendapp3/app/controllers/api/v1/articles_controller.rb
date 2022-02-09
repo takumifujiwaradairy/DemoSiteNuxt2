@@ -1,5 +1,4 @@
 class Api::V1::ArticlesController < ApplicationController
-  class Api::V1::ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :update, :destroy]
   
     def index
@@ -38,10 +37,8 @@ class Api::V1::ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-
     def article_params
       params.require(:article).permit(:title, :content, :like)
     end
 
-  end
 end

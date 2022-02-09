@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 
 const url = '/api/articles';
+const likesUrl = '/api/likes';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -23,10 +24,10 @@ const createStore = () => {
         await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
       },  
       async deleteArticle({commit}, id){
-        await axios.delete(url.concat(`/${id}`)).then(() => {commit('deleteArticle', id)})
+        await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
-      async updateLikes({commit}, upLike){
-        await axios.put(url.concat(`/${upLike.id}`), upLike).then(()=> {commit('addLike', upLike)}) 
+      async updateLikes({commit}, id){
+        await axios.put(`${likesUrl}/${id}`).then(()=> {commit('addLike', id)}) 
       }
     },
     mutations: {
@@ -35,15 +36,17 @@ const createStore = () => {
       deleteArticle: (state, id) => {
         // リアクティブ
 				const index = state.articles.findIndex((article) => article.id === id);
-        state.articles.splice(index,1);
+        state.articles.splice(index, 1);
         // 非リアクティブ
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
-      addLike: (state, upLike) => {
-        const index = state.articles.findIndex((article) => article.id === upLike.id)
+      addLike: (state, id) => {
+        const index = state.articles.findIndex((article) => article.id === id)
         if(index !== -1){
-          state.articles.splice(index, 1,upLike)
+          let likeCount = state.articles[index]
+          likeCount.like += 1
+          state.articles.splice(index, 1, likeCount);
         }
       }
     }
