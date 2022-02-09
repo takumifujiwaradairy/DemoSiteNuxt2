@@ -28,8 +28,9 @@ const createStore = () => {
       async deleteArticle({commit}, id){
         await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
-      async updateLikes({commit}, id){
-        await axios.put(`${likesUrl}/${id}`).then(()=> {commit('addLike', id)}) 
+      async updateLikes(id){
+        await axios.post(`${likesUrl}`, id)
+        // .then(()=> {commit('addLike', id)}) 
       }
     },
     mutations: {
@@ -43,14 +44,14 @@ const createStore = () => {
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
-      addLike: (state, id) => {
-        const index = state.articles.findIndex((article) => article.id === id)
-        if(index !== -1){
-          let likeCount = state.articles[index]
-          likeCount.like += 1
-          state.articles.splice(index, 1, likeCount);
-        }
-      }
+      // addLike: (state, id) => {
+      //   const index = state.articles.findIndex((article) => article.id === id)
+      //   if(index !== -1){
+      //     let likeCount = state.articles[index]
+      //     likeCount.like += 1
+      //     state.articles.splice(index, 1, likeCount);
+      //   }
+      // }
     }
   })
 }
