@@ -2,7 +2,7 @@
   <div>
     <p>Likesの合計</p>
     {{ article.like }}
-    <button @click="AddLike">LIKE</button>
+    <button @click="addLike">LIKE</button>
   </div>
 </template>
 

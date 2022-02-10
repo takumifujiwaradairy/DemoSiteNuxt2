@@ -42,4 +42,5 @@ class Api::V1::ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content, :like)
     end
+
 end
