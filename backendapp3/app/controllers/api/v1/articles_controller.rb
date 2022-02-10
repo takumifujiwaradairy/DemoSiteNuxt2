@@ -12,11 +12,13 @@ class Api::V1::ArticlesController < ApplicationController
   
     def create
       article = Article.new(article_params)
-      if article.save
-        render json: { status: 'SUCCESS', data: article }
-      else
-        render json: { status: 'ERROR', data: article.errors }
-      end
+      # article.user_id = current_user.id
+      article.user_id = 1
+        if article.save
+          render json: { status: 'SUCCESS', data: article }
+        else
+          render json: { status: 'ERROR', data: article.errors }
+        end
     end
   
     def destroy
