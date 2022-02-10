@@ -26,8 +26,10 @@ const createStore = () => {
       async deleteArticle({commit}, id){
         await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
+      // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
       async updateLikes({commit}, id){
-        await axios.put(`${likesUrl}/${id}`).then(()=> {commit('addLike', id)}) 
+        await axios.post(likesUrl, {like: {article_id: id}})
+        .then(response => {commit('addLike', response.data.data)}) 
       }
     },
     mutations: {
@@ -41,13 +43,14 @@ const createStore = () => {
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
+      // stateのLikeの値を変更するようにする。
       addLike: (state, id) => {
-        const index = state.articles.findIndex((article) => article.id === id)
-        if(index !== -1){
-          let likeCount = state.articles[index]
-          likeCount.like += 1
-          state.articles.splice(index, 1, likeCount);
-        }
+      //   const index = state.articles.findIndex((article) => article.id === id)
+      //   if(index !== -1){
+      //     let likeCount = state.articles[index]
+      //     likeCount.like += 1
+      //     state.articles.splice(index, 1, likeCount);
+      //   }
       }
     }
   })
