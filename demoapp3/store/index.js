@@ -30,7 +30,8 @@ const createStore = () => {
       },
       // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
       async updateLikes({commit}, id){
-        await axios.post(likesUrl, {like: {article_id: id}}).then(response => {commit('addLike', response.data.data)}) 
+        await axios.post(likesUrl, {like: {article_id: id}})
+        .then(response => {commit('addLike', response.data.data)}) 
       }
     },
     mutations: {
