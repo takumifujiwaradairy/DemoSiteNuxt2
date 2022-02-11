@@ -8,13 +8,16 @@ const createStore = () => {
   return new Vuex.Store({
     state: () => ({
       articles: [
-        {title: 'test', content: 'hogehogehoge', like: '0'}
+        {title: 'test', content: 'hogehogehoge'}
       ]
     }),
     getters: {
       getArticles: (state) => {
         return  state.articles
-      } 
+      },
+      getLikes: (state) => {
+        return  state.likes
+      }
     },
     actions: {
       async fetchArticles({commit}) {
@@ -32,6 +35,10 @@ const createStore = () => {
       async updateLikes({commit}, id){
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {commit('addLike', response.data.data)}) 
+        // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
+      },
+      async deleteLikes({commit}, id){
+        await axios.delete(`${likesUrl}/${id}`)
       }
     },
     mutations: {
@@ -54,6 +61,7 @@ const createStore = () => {
       //     state.articles.splice(index, 1, likeCount);
       //   }
       }
+      // stateのLikeの値を変更できるようにする。
     }
   })
 }
