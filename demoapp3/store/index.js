@@ -32,7 +32,9 @@ const createStore = () => {
       async updateLikes({commit}, id){
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {commit('addLike', response.data.data)}) 
+        // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
       }
+    
     },
     mutations: {
       setArticles: (state, articles) => { state.articles = articles },
@@ -54,6 +56,7 @@ const createStore = () => {
       //     state.articles.splice(index, 1, likeCount);
       //   }
       }
+      // stateのLikeの値を変更できるようにする。
     }
   })
 }

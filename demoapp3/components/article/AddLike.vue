@@ -3,6 +3,7 @@
     <p>Likesの合計</p>
     {{ article.like }}
     <button @click="AddLike">LIKE</button>
+    <!-- お気に入り解除ボタンを作成する -->
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default {
     AddLike: function (){
       this.updateLikes(this.article.id);
     }
+    // お気に入り解除メソッドを作成する。
   }
 }
 </script>

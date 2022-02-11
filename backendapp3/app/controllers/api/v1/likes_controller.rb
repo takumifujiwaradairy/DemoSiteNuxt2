@@ -11,9 +11,15 @@ class Api::V1::LikesController < ApplicationController
     end
   end
 
+  def delete
+    # paramsを利用してLikeを削除する。
+    # 成功したら削除できましたとレスポンスを返す。
+  end
+
   private
   def likes_params
     params.require(:like).permit(:article_id)
     # paramsの中から必要な情報を取得する。
+    #削除ようにLike.idを取得できるように変更する。
   end
 end
