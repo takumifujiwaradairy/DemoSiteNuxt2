@@ -6,6 +6,7 @@ class Api::V1::LikesController < ApplicationController
     like = current_user.likes.build(likes_params)
     if like.save
       render json: { status: 'success', message: 'success like', data: like }
+      # likeを作成時に、カウントメソッドを取得できるようにする。
     else    
       render json: { status: 'success', message: 'not updated like', data: like.errors }
     end

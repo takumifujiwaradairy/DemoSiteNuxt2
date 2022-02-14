@@ -5,6 +5,7 @@
     <button @click="AddLike">LIKE</button>
     <!-- お気に入り解除ボタンを作成する -->
     <button @click="disLike">DisLIKE</button>
+    <!-- カウントを表示できるようにする。 -->
   </div>
 </template>
 
@@ -22,6 +23,7 @@ export default {
       this.deleteLikes(this.article.id);
       // 本当はLikeIdで作成したいがまでstateの中身を作っていないので、代わり
     }
+    // responseに含まているカウントを取得できるようにする。
   }
 }
 </script>

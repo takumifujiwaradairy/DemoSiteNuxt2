@@ -23,6 +23,7 @@ const createStore = () => {
       async fetchArticles({commit}) {
         await axios.get(url).then(responce => {
           commit('setArticles', responce.data.data)
+          // likeのカウントの取得
         })
       },
       async postArticle({commit}, article) {
@@ -39,6 +40,7 @@ const createStore = () => {
       },
       async deleteLikes({commit}, id){
         await axios.delete(`${likesUrl}/${id}`)
+        // likeのカウントの取得
       }
     },
     mutations: {
