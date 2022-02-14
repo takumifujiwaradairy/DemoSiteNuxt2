@@ -13,14 +13,13 @@ import { mapActions } from 'vuex';
 export default {
   props: ["article"],
   methods: {
-    ...mapActions(['updateLikes', 'deleteLikes']),
+    ...mapActions(['updateLike', 'deleteLike']),
     AddLike: function (){
-      this.updateLikes(this.article.id);
+      this.updateLike(this.article.id);
     },
     // お気に入り解除メソッドを作成する。
     disLike: function (){
-      this.deleteLikes(this.article.id);
-      // 本当はLikeIdで作成したいがまでstateの中身を作っていないので、代わり
+      this.deleteLike(this.article.id);
     }
   }
 }

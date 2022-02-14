@@ -35,7 +35,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getArticles', 'getLikes']),
-    ...mapState(['articles']),
       displayArticle: function() {
         if(this.findFlg){
           var articles = [];

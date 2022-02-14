@@ -8,7 +8,6 @@ const createStore = () => {
   return new Vuex.Store({
     state: () => ({
       articles: [
-        {title: 'test', content: 'hogehogehoge'}
       ]
     }),
     getters: {
@@ -29,15 +28,15 @@ const createStore = () => {
         await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
       },  
       async deleteArticle({commit}, id){
+      // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
         await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
-      // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
-      async updateLikes({commit}, id){
+      async updateLike({commit}, id){
         await axios.post(likesUrl, {like: {article_id: id}})
-        .then(response => {commit('addLike', response.data.data)}) 
         // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
+        .then(response => {commit('addLike', response.data.data)}) 
       },
-      async deleteLikes({commit}, id){
+      async deleteLike({commit}, id){
         await axios.delete(`${likesUrl}/${id}`)
       }
     },
