@@ -34,8 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getArticles']),
-    ...mapState(['articles']),
+    ...mapGetters(['getArticles', 'getLikes']),
       displayArticle: function() {
         if(this.findFlg){
           var articles = [];
@@ -61,10 +60,6 @@ export default {
         this.findTitle = '';
       }
     },
-    rennsyuu: function() {
-    let n1 = ['yusuke','kazuya','risa','shiori']
-    consoel.log(n1[0])
-    }
   },
   created () {
     this.fetchArticles()

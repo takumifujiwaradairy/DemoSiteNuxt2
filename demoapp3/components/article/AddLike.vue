@@ -2,7 +2,9 @@
   <div>
     <p>Likesの合計</p>
     {{ article.like }}
-    <button @click="addLike">LIKE</button>
+    <button @click="AddLike">LIKE</button>
+    <!-- お気に入り解除ボタンを作成する -->
+    <button @click="disLike">DisLIKE</button>
   </div>
 </template>
 
@@ -11,9 +13,13 @@ import { mapActions } from 'vuex';
 export default {
   props: ["article"],
   methods: {
-    ...mapActions(['updateLikes']),
+    ...mapActions(['updateLike', 'deleteLike']),
     AddLike: function (){
-      this.updateLikes(this.article.id);
+      this.updateLike(this.article.id);
+    },
+    // お気に入り解除メソッドを作成する。
+    disLike: function (){
+      this.deleteLike(this.article.id);
     }
   }
 }
