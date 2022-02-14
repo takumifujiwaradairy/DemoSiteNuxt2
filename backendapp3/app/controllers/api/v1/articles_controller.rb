@@ -4,6 +4,7 @@ class Api::V1::ArticlesController < ApplicationController
     def index
       articles = Article.order(created_at: :desc)
       render json: { status: 'SUCCESS', message: 'Loaded articles', data: articles }
+      # article取得のタイミングでカウントメソッドも共に送信するようにする
     end
   
     def show
