@@ -32,11 +32,11 @@ const createStore = () => {
         await axios.delete(`${url}/${id}`).then(() => {commit('deleteArticle', id)})
       },
       async updateLike({commit}, id){
-        // サーバー再度にリクエストをおくる
+        // サーバーサイドにリクエストをおくる
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {
-        // レスポンスを受け、mutationに伝聞を出す。
-        commit('addLike', response.data.data)
+          // レスポンスを受け、mutationに伝聞を出す。
+          commit('addLike', response.data.data)
         }) 
       },
       async deleteLike({commit}, id){
