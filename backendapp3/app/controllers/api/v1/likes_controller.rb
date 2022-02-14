@@ -11,7 +11,7 @@ class Api::V1::LikesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     # paramsを利用してLikeを削除する。
     # 成功したら削除できましたとレスポンスを返す。
   end

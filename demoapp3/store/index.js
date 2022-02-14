@@ -33,8 +33,10 @@ const createStore = () => {
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {commit('addLike', response.data.data)}) 
         // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
+      },
+      async deleteLikes({commit}, id){
+        await axios.delete(`${likesUrl}/${id}`)
       }
-    
     },
     mutations: {
       setArticles: (state, articles) => { state.articles = articles },
