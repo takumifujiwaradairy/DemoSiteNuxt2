@@ -2,8 +2,8 @@ class Api::V1::ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :update, :destroy]
   
     def index
-      articles = Article.order(created_at: :desc)
-      render json: { status: 'SUCCESS', message: 'Loaded articles', data: articles }
+      articles = Article.includes(:likes).order(created_at: :desc)
+      render json: { status: 'SUCCESS', message: 'Loaded articles', data: articles.all.to_json(methods: :likes_count) }
       # article取得のタイミングでカウントメソッドも共に送信するようにする
     end
   
