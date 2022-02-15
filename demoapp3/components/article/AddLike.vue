@@ -1,11 +1,11 @@
 <template>
   <div>
     <p>Likesの合計</p>
+    <!-- responseに含まているカウントを取得できるようにする。 -->
     {{ article.likes_count }}
     <button @click="AddLike">LIKE</button>
     <!-- お気に入り解除ボタンを作成する -->
     <button @click="disLike">DisLIKE</button>
-    <!-- カウントを表示できるようにする。 -->
   </div>
 </template>
 
@@ -22,7 +22,6 @@ export default {
     disLike: function (){
       this.deleteLike(this.article.id);
     }
-    // responseに含まているカウントを取得できるようにする。
   }
 }
 </script>

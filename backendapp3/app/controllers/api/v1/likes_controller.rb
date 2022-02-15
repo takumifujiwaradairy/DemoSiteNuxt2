@@ -6,7 +6,6 @@ class Api::V1::LikesController < ApplicationController
     if like.save
       # 成功したら作成したLikeをレスポンスに返す。
       render json: { status: 'success', message: 'success like', data: like }
-      # likeを作成時に、カウントメソッドを取得できるようにする。
     else    
       render json: { status: 'success', message: 'not updated like', data: like.errors }
     end

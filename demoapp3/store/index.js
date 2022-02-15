@@ -21,14 +21,13 @@ const createStore = () => {
     actions: {
       async fetchArticles({commit}) {
         await axios.get(url).then(responce => {
+          // likeのカウントの取得し、文字列をオブジェクトに変換
           const articles = JSON.parse(responce.data.data)
           commit('setArticles', articles)
-          // likeのカウントの取得
         })
       },
       async postArticle({commit}, article) {
         await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
-        
       },  
       async deleteArticle({commit}, id){
       // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
@@ -39,13 +38,11 @@ const createStore = () => {
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {
           // レスポンスを受け、mutationに伝聞を出す。
-          console.log(response);
           commit('addLike', response.data.data)
         }) 
       },
       async deleteLike({commit}, id){
         await axios.delete(`${likesUrl}/${id}`)
-        // likeのカウントの取得
       }
     },
     mutations: {
