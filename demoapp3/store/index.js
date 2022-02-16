@@ -27,7 +27,9 @@ const createStore = () => {
         })
       },
       async postArticle({commit}, article) {
-        await axios.post(url, article).then(responce => { commit('newArticle', responce.data.data)})
+        await axios.post(url, article).then(responce => {
+          const article = JSON.parse(responce.data.data)
+          commit('newArticle', article)})
       },  
       async deleteArticle({commit}, id){
       // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
@@ -71,7 +73,7 @@ const createStore = () => {
           article.likes_count = id[0];
           state.articles.splice(index, 1, article);
         } else {
-          console.log("この記事はすでにお気に入り登録されています！");
+          console.log(id[0]);
         }
       }
     }

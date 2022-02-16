@@ -15,7 +15,7 @@ class Api::V1::ArticlesController < ApplicationController
       article = Article.new(article_params)
       article.user_id = current_user.id
       if article.save
-        render json: { status: 'SUCCESS', data: article }
+        render json: { status: 'SUCCESS', data: article.to_json(methods: :likes_count) }
       else
         render json: { status: 'ERROR', data: article.errors }
       end

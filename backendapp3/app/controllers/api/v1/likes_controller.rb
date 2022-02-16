@@ -16,9 +16,11 @@ class Api::V1::LikesController < ApplicationController
   def destroy
     # likeという変数の中にcrrent_userのlikesの投稿の中からarticle_idが一致した物を入れる。
     like = current_user.likes.find_by(article_id: params[:id])
+    # 成功したら削除できましたとレスポンスを返す。
     if like.destroy
-      # 成功したら削除できましたとレスポンスを返す。
-      render json: { status: 'SUCCESS', message: 'Deleted the Likes' }
+      # 削除した後にLIKEの対象のArticleをカウントする
+      likes_count = Like.where(article_id: params[:id]).count
+      render json: { status: 'SUCCESS', message: 'Deleted the Likes', data: likes_count }
     end
   end
 
