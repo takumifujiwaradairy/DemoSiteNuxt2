@@ -45,6 +45,9 @@ const createStore = () => {
       },
       async deleteLike({commit}, id){
         await axios.delete(`${likesUrl}/${id}`)
+        .then(response => {
+          commit('deleteLike', [response.data.data, id])
+        })
       }
     },
     mutations: {
@@ -66,15 +69,24 @@ const createStore = () => {
         // id[1] = articlesの番号
         // すでにUserがlikeをしていた場合、エラー分が入っているので弾く。数値が入っている場合には処理を行う
         if (!isNaN(id[0])){
-          // ここでArticleのID番号を特定する。
+          // ここでArticleのIDを特定する。
           const index = state.articles.findIndex((article) => article.id === id[1]);
           const article =state.articles[index]
           // サーバーから取ってきたいいね数を代入する。
           article.likes_count = id[0];
           state.articles.splice(index, 1, article);
         } else {
+          // エラー文を返す
           console.log(id[0]);
         }
+      },
+      deleteLike: (state, id) => {
+        // ここでArticleのIDを特定する。
+        const index = state.articles.findIndex((article) => article.id === id[1]);
+        // spliceを使うために一度配列を定数に入れる
+        const article =state.articles[index]
+        article.likes_count = id[0];
+        state.articles.splice(index, 1, article);
       }
     }
   })
