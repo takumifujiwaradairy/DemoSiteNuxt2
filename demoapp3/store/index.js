@@ -41,7 +41,7 @@ const createStore = () => {
         .then(response => {
           // レスポンスを受け、mutationに伝聞を出す。
           // 第２引数でオブジェクトを返す
-          commit('addlike', { id: id, count: response.data.data })
+          commit('addLike', { id: id, count: response.data.data })
         })
         .catch(error => {
           console.log(error);
@@ -58,7 +58,7 @@ const createStore = () => {
       setArticles: (state, articles) => {
         state.articles = articles 
       },
-      addArticle: (state, article) => state.articles.unshift(article),
+      addArticle: (state, article) => state.articles.push(article),
       deleteArticle: (state, id) => {
         // リアクティブ
 				const index = state.articles.findIndex((article) => article.id === id);
@@ -77,9 +77,9 @@ const createStore = () => {
         state.articles.splice(index, 1, article);
       },
       // 第２引数で分割代入で値を受け取る
-      deletelike: (state, { id, count }) => {
+      deleteLike: (state, { id, count }) => {
         // ここでarticleのidを特定する。
-        const index = state.articles.findindex((article) => article.id === id);
+        const index = state.articles.findIndex((article) => article.id === id);
         // spliceを使うために一度配列を定数に入れる
         const article =state.articles[index]
         article.likes_count = count;
