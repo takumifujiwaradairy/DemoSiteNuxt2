@@ -4,8 +4,10 @@ class Api::V1::LikesController < ApplicationController
     # paramsを利用してLikeにuser_idとarticle_idに該当記事とユーザーのIdを入れる。
     like = current_user.likes.build(likes_params)
     if like.save
-      # 成功したら作成したLikeをレスポンスに返す。
-      render json: { status: 'success', message: 'success like', data: like }
+      # 成功したら作成したらLikeをしたAricleのLikeの合計をレスポンスに返す。 
+      # likes_count = Like.where(likes_params).count
+      likes_count  = Article.where(id: likes_params[:article_id]).new.likes.count
+      render json: { status: 'success', message: 'success like', data: likes_count }
     else    
       render json: { status: 'success', message: 'not updated like', data: like.errors }
     end

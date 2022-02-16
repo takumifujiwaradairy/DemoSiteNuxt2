@@ -38,7 +38,7 @@ const createStore = () => {
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {
           // レスポンスを受け、mutationに伝聞を出す。
-          commit('addLike', response.data.data)
+          commit('addLike', [response.data.data, id])
         }) 
       },
       async deleteLike({commit}, id){
@@ -46,7 +46,9 @@ const createStore = () => {
       }
     },
     mutations: {
-      setArticles: (state, articles) => { state.articles = articles },
+      setArticles: (state, articles) => {
+        state.articles = articles },
+
       newArticle: (state, article) => state.articles.unshift(article),
       deleteArticle: (state, id) => {
         // リアクティブ
@@ -58,14 +60,20 @@ const createStore = () => {
       },
       // stateのLikeの値を変更するようにする。
       addLike: (state, id) => {
-      //   const index = state.articles.findIndex((article) => article.id === id)
-      //   if(index !== -1){
-      //     let likeCount = state.articles[index]
-      //     likeCount.like += 1
-      //     state.articles.splice(index, 1, likeCount);
-      //   }
+        // id[0] = カウント
+        // id[1] = articlesの番号
+        // すでにUserがlikeをしていた場合、エラー分が入っているので弾く。数値が入っている場合には処理を行う
+        if (!isNaN(id[0])){
+          // ここでArticleのID番号を特定する。
+          const index = state.articles.findIndex((article) => article.id === id[1]);
+          const article =state.articles[index]
+          // サーバーから取ってきたいいね数を代入する。
+          article.likes_count = id[0];
+          state.articles.splice(index, 1, article);
+        } else {
+          console.log("この記事はすでにお気に入り登録されています！");
+        }
       }
-      // stateのLikeの値を変更できるようにする。
     }
   })
 }
