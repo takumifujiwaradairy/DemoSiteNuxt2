@@ -29,7 +29,7 @@ const createStore = () => {
       async postArticle({commit}, article) {
         await axios.post(url, article).then(responce => {
           const article = JSON.parse(responce.data.data)
-          commit('newArticle', article)})
+          commit('addArticle', article)})
       },  
       async deleteArticle({commit}, id){
       // サーバーサイドにリクエストを送り、mutationに伝聞を出す。
@@ -40,21 +40,25 @@ const createStore = () => {
         await axios.post(likesUrl, {like: {article_id: id}})
         .then(response => {
           // レスポンスを受け、mutationに伝聞を出す。
-          commit('addLike', [response.data.data, id])
+          // 第２引数でオブジェクトを返す
+          commit('addlike', { id: id, count: response.data.data })
+        })
+        .catch(error => {
+          console.log(error);
         }) 
       },
       async deleteLike({commit}, id){
         await axios.delete(`${likesUrl}/${id}`)
         .then(response => {
-          commit('deleteLike', [response.data.data, id])
+          commit('deleteLike', { id: id, count: response.data.data })
         })
       }
     },
     mutations: {
       setArticles: (state, articles) => {
-        state.articles = articles },
-
-      newArticle: (state, article) => state.articles.unshift(article),
+        state.articles = articles 
+      },
+      addArticle: (state, article) => state.articles.unshift(article),
       deleteArticle: (state, id) => {
         // リアクティブ
 				const index = state.articles.findIndex((article) => article.id === id);
@@ -63,29 +67,22 @@ const createStore = () => {
         // const index = state.articles.findIndex((article) => article.id === id);
         // delete state.articles[index];
       },
-      // stateのLikeの値を変更するようにする。
-      addLike: (state, id) => {
-        // id[0] = カウント
-        // id[1] = articlesの番号
-        // すでにUserがlikeをしていた場合、エラー分が入っているので弾く。数値が入っている場合には処理を行う
-        if (!isNaN(id[0])){
-          // ここでArticleのIDを特定する。
-          const index = state.articles.findIndex((article) => article.id === id[1]);
-          const article =state.articles[index]
-          // サーバーから取ってきたいいね数を代入する。
-          article.likes_count = id[0];
-          state.articles.splice(index, 1, article);
-        } else {
-          // エラー文を返す
-          console.log(id[0]);
-        }
-      },
-      deleteLike: (state, id) => {
+      // 第２引数で分割代入で値を受け取る
+      addLike: (state, { id, count }) => {
         // ここでArticleのIDを特定する。
-        const index = state.articles.findIndex((article) => article.id === id[1]);
+        const index = state.articles.findIndex((article) => article.id === id);
+        const article =state.articles[index]
+        // サーバーから取ってきたいいね数を代入する。
+        article.likes_count = count;
+        state.articles.splice(index, 1, article);
+      },
+      // 第２引数で分割代入で値を受け取る
+      deletelike: (state, { id, count }) => {
+        // ここでarticleのidを特定する。
+        const index = state.articles.findindex((article) => article.id === id);
         // spliceを使うために一度配列を定数に入れる
         const article =state.articles[index]
-        article.likes_count = id[0];
+        article.likes_count = count;
         state.articles.splice(index, 1, article);
       }
     }
