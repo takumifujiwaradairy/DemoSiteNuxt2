@@ -3,7 +3,8 @@ class Api::V1::ArticlesController < ApplicationController
   
     def index
       articles = Article.order(created_at: :desc)
-      render json: { status: 'SUCCESS', message: 'Loaded articles', data: articles }
+      # article取得のタイミングでカウントメソッドも共に送信するようにする
+      render json: { status: 'SUCCESS', message: 'Loaded articles', data: articles.all.to_json(methods: :likes_count) }
     end
   
     def show
@@ -14,7 +15,8 @@ class Api::V1::ArticlesController < ApplicationController
       article = Article.new(article_params)
       article.user_id = current_user.id
       if article.save
-        render json: { status: 'SUCCESS', data: article }
+        # 作成した記事と共にlikesのカウントを送信
+        render json: { status: 'SUCCESS', data: article.to_json(methods: :likes_count) }
       else
         render json: { status: 'ERROR', data: article.errors }
       end

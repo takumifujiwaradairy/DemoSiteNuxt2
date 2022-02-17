@@ -1,7 +1,8 @@
 <template>
   <div>
     <p>Likesの合計</p>
-    {{ article.like }}
+    <!-- responseに含まているカウントを取得できるようにする。 -->
+    {{ article.likes_count }}
     <button @click="AddLike">LIKE</button>
     <!-- お気に入り解除ボタンを作成する -->
     <button @click="disLike">DisLIKE</button>
