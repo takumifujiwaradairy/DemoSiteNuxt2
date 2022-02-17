@@ -9,7 +9,7 @@ class Api::V1::LikesController < ApplicationController
       # likes_count = Like.where(likes_params).count
       # 書き方その2
       # 合計値を返す
-      likes_count = Article.find(likes_params[:article_id]).likes_count
+      likes_count = Article.find(likes_params[:article_id]).likes.count
       render json: { status: 'success', message: 'success like', data: likes_count }
     else    
       render json: { status: 'success', message: 'not updated like', data: like.errors }, status: 400
