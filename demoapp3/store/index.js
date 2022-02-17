@@ -74,6 +74,8 @@ const createStore = () => {
         const article =state.articles[index]
         // サーバーから取ってきたいいね数を代入する。
         article.likes_count = count;
+        // Likeの判定をtrueにする
+        article.is_like = true;
         state.articles.splice(index, 1, article);
       },
       // 第２引数で分割代入で値を受け取る
@@ -83,6 +85,8 @@ const createStore = () => {
         // spliceを使うために一度配列を定数に入れる
         const article =state.articles[index]
         article.likes_count = count;
+        // Likeの判定をfalseにする
+        article.is_like = false;
         state.articles.splice(index, 1, article);
       }
     }
